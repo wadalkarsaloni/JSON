@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="demo1">
+        <button onclick="loadObj()">Click to load</button>
+    </div>
+
+    <script>
+        function loadObj(){
+            var server = new XMLHttpRequest;
+            server.onreadystatechange = function(){
+                if(this.readyState==4&& this.status==200){
+                    var newObj = JSON.parse(this.responseText)
+
+                    document.getElementById("demo1").innerHTML = newObj.myObj[1].Name;
+                }
+            }
+
+            server.open('GET','demo.json',true)
+            server.send();
+        }
+    </script>
+</body>
+</html>
